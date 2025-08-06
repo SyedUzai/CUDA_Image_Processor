@@ -1,18 +1,5 @@
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <vector>
-
+#include <image_utils.hpp>
 using namespace std;
-
-struct Image{
-    int width;
-    int height;
-    int maxval;
-    vector<unsigned char> rawdata;
-};
-
 
 void process_pgm(const Image &img, const string &path){
     ofstream out(path, ios::binary);
