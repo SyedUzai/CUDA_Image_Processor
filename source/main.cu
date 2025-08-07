@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     Image instance;
-    ifstream file("C:\\Users\\Uzair\\OneDrive\\Documents\\Image_Processor\\images\\input\\lenna.ppm", std::ios::binary);
+    ifstream file("C:\\Users\\Uzair\\OneDrive\\Documents\\Image_Processor\\images\\input\\pepper.ppm", std::ios::binary);
     if (!file) {
         cerr << "Error: Could not open file\n";
         return 1;
@@ -15,20 +15,23 @@ int main() {
 
     size_t imageSize = instance.rawdata.size() * sizeof(unsigned char);
     unsigned char* d_data;
+    unsigned char* d_outdata;
 
 
     cudaMalloc((void**)&d_data, imageSize);
+    cudaMalloc((void**)&d_outdata, imageSize);
     cudaMemcpy(d_data, instance.rawdata.data(), imageSize, cudaMemcpyHostToDevice);
 
     int threadspblock = 256;
     int blocks = (instance.rawdata.size() + threadspblock - 1) / threadspblock;
 
-    GaussianFilter<<< blocks, threadspblock >>>(d_data, instance.width, instance.height, instance.maxval);
+    GaussianFilter<<< blocks, threadspblock >>>(d_data, d_outdata, instance.width, instance.height, instance.maxval);
 
-    cudaMemcpy(instance.rawdata.data(), d_data, imageSize, cudaMemcpyDeviceToHost);
+    cudaMemcpy(instance.rawdata.data(), d_outdata, imageSize, cudaMemcpyDeviceToHost);
     cudaFree(d_data);
+    cudaFree(d_outdata);
 
-    process_pgm(instance, "output.pgm");
+    process_pgm(instance, "C:\\Users\\Uzair\\OneDrive\\Documents\\Image_Processor\\images\\output\\output_Gaussian.pgm");
 
     return 0;
 
