@@ -17,6 +17,7 @@ int main() {
     unsigned char* d_data;
     unsigned char* d_outdata;
 
+    
 
     cudaMalloc((void**)&d_data, imageSize);
     cudaMalloc((void**)&d_outdata, imageSize);
@@ -25,7 +26,25 @@ int main() {
     int threadspblock = 256;
     int blocks = (instance.rawdata.size() + threadspblock - 1) / threadspblock;
 
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
+    cudaEventRecord(start);
+
     GaussianFilter<<< blocks, threadspblock >>>(d_data, d_outdata, instance.width, instance.height, instance.maxval);
+
+    cudaDeviceSynchronize();  // Ensure kernel is finished
+
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+
+    float milliseconds = 0;
+    cudaEventElapsedTime(&milliseconds, start, stop);
+    std::cout << "GPU Time: " << milliseconds << " ms\n";
+
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
 
     cudaMemcpy(instance.rawdata.data(), d_outdata, imageSize, cudaMemcpyDeviceToHost);
     cudaFree(d_data);
