@@ -1,4 +1,4 @@
-#include <image_utils.hpp>
+#include "image_utils.hpp"
 using namespace std;
 
 void process_pgm(const Image &img, const string &path){
@@ -53,16 +53,3 @@ Image get_imgData(ifstream& file) {
 }
 
 
-int main(){
-    Image instance;
-    ifstream file("C:\\Users\\Uzair\\OneDrive\\Documents\\Image_Processor\\images\\input\\lenna.ppm", std::ios::binary);
-    if (!file) {
-        cerr << "Error: Could not open file\n";
-        return 1;
-    }
-
-    instance = get_imgData(file);
-    return 0;
-   
-    
-}
