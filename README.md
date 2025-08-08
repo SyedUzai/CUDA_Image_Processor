@@ -46,8 +46,13 @@ The pipeline includes:
 ## 📸 Example Results
 
 | Input | Greyscale | Gaussian Blur | Sobel Filter |
-|-------|------------|------------|-------------|
-| <img width="509" height="512" alt="image" src="https://github.com/user-attachments/assets/e70690a6-db01-45ea-a76e-19069bafacc6" /> |  <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/338ab95f-f188-478b-8334-d4f6d0be4444" /> | <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/9c211b1c-a180-4959-aaf2-57cac69f20a8" /> | <img width="510" height="510" alt="image" src="https://github.com/user-attachments/assets/950e8193-6a4b-4750-aeed-dfc5904974f4" /> |
+|------------|------------|------------|------------|
+| <img width="509" height="512" alt="image" src="https://github.com/user-attachments/assets/e70690a6-db01-45ea-a76e-19069bafacc6" /> <img width="508" height="511" alt="image" src="https://github.com/user-attachments/assets/bfa40c9a-6613-486c-a819-5cd76e892204" /> |  <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/338ab95f-f188-478b-8334-d4f6d0be4444" /> <img width="510" height="511" alt="image" src="https://github.com/user-attachments/assets/55d60481-8bf8-4208-835f-a77ee1958005" />| <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/9c211b1c-a180-4959-aaf2-57cac69f20a8" /> <img width="509" height="509" alt="image" src="https://github.com/user-attachments/assets/e9e99fc5-e4b1-47d2-8bbd-41c3993e1fd2" /> | <img width="510" height="510" alt="image" src="https://github.com/user-attachments/assets/950e8193-6a4b-4750-aeed-dfc5904974f4" /> <img width="509" height="509" alt="image" src="https://github.com/user-attachments/assets/9922c75a-8fd1-4efb-8957-58f8fbd9b20d" /> |
+
+
+
+
+
 
 
 ## 📌 Improvements
