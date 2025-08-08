@@ -2,7 +2,6 @@
 #include "Gaussian.cuh"
 using namespace std;
 
-
 int main() {
     Image instance;
     ifstream file("C:\\Users\\Uzair\\OneDrive\\Documents\\Image_Processor\\images\\input\\pepper.ppm", std::ios::binary);
@@ -17,14 +16,13 @@ int main() {
     unsigned char* d_data;
     unsigned char* d_outdata;
 
-    
-
     cudaMalloc((void**)&d_data, imageSize);
     cudaMalloc((void**)&d_outdata, imageSize);
+
     cudaMemcpy(d_data, instance.rawdata.data(), imageSize, cudaMemcpyHostToDevice);
 
     int threadspblock = 256;
-    int blocks = (instance.rawdata.size() + threadspblock - 1) / threadspblock;
+    int blockspergrid = (instance.rawdata.size() + threadspblock - 1) / threadspblock;
 
     cudaEvent_t start, stop;
     cudaEventCreate(&start);
@@ -32,9 +30,9 @@ int main() {
 
     cudaEventRecord(start);
 
-    GaussianFilter<<< blocks, threadspblock >>>(d_data, d_outdata, instance.width, instance.height, instance.maxval);
+    GaussianFilter<<< blockspergrid, threadspblock >>>(d_data, d_outdata, instance.width, instance.height);
 
-    cudaDeviceSynchronize();  // Ensure kernel is finished
+    cudaDeviceSynchronize();  
 
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);

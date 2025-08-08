@@ -1,12 +1,11 @@
-
-__global__ void GaussianFilter(unsigned char* d_data, unsigned char* d_outdata, int width, int height, int maxval) {
+__global__ void GaussianFilter(unsigned char* d_data, unsigned char* d_outdata, int width, int height) {
     //Each thread handles one pixel 
     int idx = threadIdx.x + blockDim.x * blockIdx.x;
 
-    const int BlurMatrix[3][3] = {
-        {1, 2, 1},
-        {2, 4, 2},
-        {1, 2, 1}
+    static int d_filter[3][3] = {
+         {1, 2, 1},
+         {2, 4, 2},
+         {1, 2, 1}
     };
 
     int row = idx / width;
@@ -26,7 +25,7 @@ __global__ void GaussianFilter(unsigned char* d_data, unsigned char* d_outdata, 
             int neighbourRow = row + dy;
             int neighbourCol = col + dx;
             int pixel = d_data[neighbourRow * width + neighbourCol];
-            sum += pixel * BlurMatrix[dy + 1][dx + 1];
+            sum += pixel * d_filter[dy + 1][dx + 1];
         }
     }
 

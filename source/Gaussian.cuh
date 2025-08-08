@@ -5,6 +5,6 @@
 #include <cuda_runtime.h>
 
 // Declare your kernel
-__global__ void GaussianFilter(unsigned char* data, unsigned char* d_outdata,  int width, int height, int maxval);
+__global__ void GaussianFilter(unsigned char* data, unsigned char* d_outdata,  int width, int height);
 
 #endif // GAUSSIAN_CUH
