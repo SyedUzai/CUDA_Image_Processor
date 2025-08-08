@@ -2,16 +2,16 @@
 
 ## 🔍 Overview
 
-This project showcases how GPU acceleration can drastically improve performance for image processing tasks. Using **CUDA**, it applies a **Gaussian Blur** filter on grayscale images and achieves a **59x–61x speedup** over a CPU-based implementation.
+This project showcases how GPU acceleration can drastically improve performance for image processing tasks. Using **CUDA**, it applies a **Gaussian Blur** filter on grayscale images + **Sobel Filter** and achieves a **59x–61x speedup** over a CPU-based implementation.
 
 The pipeline includes:
 1. **Converting colour images to grayscale**
 2. **Applying Gaussian blur on CPU and GPU**
-3. **(Coming soon)** Sobel edge detection
+3. **Applying Sobel blur on CPU and GPU**
 
 ## 🚀 Features
 
-- Fast Gaussian blur using CUDA
+- Fast Gaussian and Sobel filters using CUDA
 - Baseline comparison using CPU
 - Grayscale conversion built-in
 - Performance benchmarking
@@ -25,6 +25,7 @@ The pipeline includes:
 | **C++** | Image I/O and CPU processing |
 | **Chrono** | Timing and benchmarking |
 | **PGM/PPM** | Lightweight image formats for simplicity |
+| **Nsight Compute** | Prolfiling tool to analyze perf. |
 
 ## 💻 Hardware Used
 
@@ -44,12 +45,12 @@ The pipeline includes:
 
 ## 📸 Example Results
 
-| Input | Greyscale | Gaussian Blur |
-|-------|------------|------------|
-| <img width="509" height="512" alt="image" src="https://github.com/user-attachments/assets/e70690a6-db01-45ea-a76e-19069bafacc6" /> |  <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/338ab95f-f188-478b-8334-d4f6d0be4444" /> | <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/9c211b1c-a180-4959-aaf2-57cac69f20a8" /> |
+| Input | Greyscale | Gaussian Blur | Sobel Filter |
+|-------|------------|------------|-------------|
+| <img width="509" height="512" alt="image" src="https://github.com/user-attachments/assets/e70690a6-db01-45ea-a76e-19069bafacc6" /> |  <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/338ab95f-f188-478b-8334-d4f6d0be4444" /> | <img width="511" height="513" alt="image" src="https://github.com/user-attachments/assets/9c211b1c-a180-4959-aaf2-57cac69f20a8" /> | <img width="510" height="510" alt="image" src="https://github.com/user-attachments/assets/950e8193-6a4b-4750-aeed-dfc5904974f4" /> |
 
 
 ## 📌 Improvements
 
-- **Sobel Edge Detection** (GPU + CPU)
+- Improved Profiling and optimazations using Nsight Compute 
 - Multi-channel (RGB) support
